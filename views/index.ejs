@@ -14,5 +14,15 @@
         <input type="text" placeholder="Podaj Nazwisko" name="nazwisko">
         <button type="submit">Zatwierdź</button>
       </form>
+      <ul class="studenci">
+        <!-- Loop through quotes -->
+        <% for(var i = 0; i < studenci.length; i++) {%>
+          <li class="student">
+            <span><%= studenci[i].album %></span>:
+            <span><%= studenci[i].imie %></span>
+            <span><%= studenci[i].nazwisko %></span>
+          </li>
+        <% } %>
+      </ul>
 </body>
 </html>

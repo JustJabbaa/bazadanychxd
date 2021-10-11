@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express')
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 var url = "mongodb+srv://Jabbaa:123@zadanie-db.wevsr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
@@ -14,24 +14,23 @@ MongoClient.connect(url, { useUnifiedTopology: true })
   })
   .catch(console.error)
 
-app.listen(3000, function () {
-  console.log('listening on 3000')
-})
+
+
+app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html')
+  
   db.collection('studenci').find().toArray()
     .then(results => {
-      console.log(results)
+      res.render('index.ejs', { studenci: results})
     })
     .catch(error => console.error(error))
-  // ...
 })
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
-app.post('/student', (req, res) => {
+app.post('/studenci', (req, res) => {
 
   studentCollection.insertOne(req.body)
     .then(result => {
@@ -40,4 +39,9 @@ app.post('/student', (req, res) => {
     })
     .catch(error => console.error(error))
 })
+app.listen(3000, function () {
+  console.log('listening on 3000')
+})
+
+
 
