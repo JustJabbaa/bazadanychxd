@@ -19,6 +19,7 @@ app.listen(3000, function () {
 })
 
 app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html')
   db.collection('studenci').find().toArray()
     .then(results => {
       console.log(results)
